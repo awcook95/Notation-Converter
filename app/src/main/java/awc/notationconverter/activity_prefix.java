@@ -7,28 +7,28 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class activity_infix extends AppCompatActivity {
+public class activity_prefix extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_infix);
+        setContentView(R.layout.activity_prefix);
     }
 
     public void onClkConvert(View view){
-        EditText userInfix = findViewById(R.id.editInput); //get user input from EditText
+        EditText userPrefix = findViewById(R.id.editInput); //get user input from EditText
         ExprTree exprTree = new ExprTree();
-        exprTree.parseInfix(userInfix.getText().toString()); //parse user input to generate tree
+        exprTree.parsePrefix(userPrefix.getText().toString()); //parse user input to generate tree
 
-        TextView prefixResult = findViewById(R.id.textResultPrefix); //get output TextViews
+        TextView infixResult = findViewById(R.id.textResultInfix); //get output TextViews
         TextView postfixResult = findViewById(R.id.textResultPostfix);
 
         if(exprTree.root == null){ //invalid inputs will result in a null root
-            prefixResult.setText("Invalid Input");
+            infixResult.setText("Invalid Input");
             postfixResult.setText("Invalid Input");
         }
         else{ //set output of TextViews
-            prefixResult.setText("Prefix: " + exprTree.preOrder());
+            infixResult.setText("Prefix: " + exprTree.inOrder());
             postfixResult.setText("Postfix: " + exprTree.postOrder());
         }
 
